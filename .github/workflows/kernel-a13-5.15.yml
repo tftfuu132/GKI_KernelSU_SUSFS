@@ -1,62 +1,62 @@
-name: Android 13 5.15
-permissions:
-  contents: write  # Allow writing to repository contents (for pushing tags)
-  actions: write   # Allows triggering actions
+名字: 安卓13 5.15
+许可:
+内容: 写#允许写入存储库内容(用于推送标签)
+行动: 写#允许触发动作
 
-on:
-  workflow_call:  # This allows this workflow to be called from another workflow
-    inputs:
-      runner:
-        required: true
-        type: string
-      lto_type:
-        required: true
-        type: string
-      kernelsu_variant:
-        required: true
-        type: string
-      kernelsu_branch:
-        required: true
-        type: string
-      kernelsu_branch_other:
-        required: false
-        type: string
+在:
+工作流_呼叫:  #这允许从另一个工作流调用此工作流
+输入:
+跑步者:
+需要: 真实的
+类型: 线
+lto_type:
+需要: 真实的
+类型: 线
+kernelsu_variant:
+需要: 真实的
+类型: 线
+kernelsu_branch:
+需要: 真实的
+类型: 线
+kernelsu _ branch _其他:
+需要: 错误的
+类型: 线
   
-jobs:
-  build-kernel-a13-5-15-kernelsu-susfs:
-    strategy:
-      fail-fast: false
-      matrix:
-        include:
-          - sub_level: "94"
-            os_patch_level: "2023-05"
-          - sub_level: "123"
-            os_patch_level: "2023-11"
-          - sub_level: "137"
-            os_patch_level: "2024-01"
-          - sub_level: "144"
-            os_patch_level: "2024-03"
-          - sub_level: "148"
-            os_patch_level: "2024-05"
-          - sub_level: "149"
-            os_patch_level: "2024-07"
-          - sub_level: "151"
-            os_patch_level: "2024-08"
-          - sub_level: "167"
-            os_patch_level: "2024-11"
-          - sub_level: "170"
-            os_patch_level: "2025-01"
-          - sub_level: "X"
-            os_patch_level: "lts"
-    uses: ./.github/workflows/gki-kernel.yml
-    secrets: inherit
-    with:
-      android_version: "android13"
-      kernel_version: "5.15"
-      sub_level: ${{ matrix.sub_level }}
-      os_patch_level: ${{ matrix.os_patch_level }}
-      runner: ${{ inputs.runner }}
-      lto_type: ${{ inputs.lto_type }}
-      kernelsu_variant: ${{ inputs.kernelsu_variant }}
-      kernelsu_branch: ${{ inputs.kernelsu_branch }}
-      kernelsu_branch_other: ${{ inputs.kernelsu_branch_other }}
+工作:
+构建-内核-a13-5-15-内核:
+战略:
+快速失效: 错误的
+矩阵:
+包括:
+          - 子级别: "86"
+操作系统补丁级别: "2023-01"
+          - 子级别: "123"
+操作系统补丁级别: "2023-11"
+          - 子级别: "137"
+操作系统补丁级别: "2024-01"
+          - 子级别: "144"
+操作系统补丁级别: "2024-03"
+          - 子级别: "148"
+操作系统补丁级别: "2024-05"
+          - 子级别: "149"
+操作系统补丁级别: "2024-07"
+          - 子级别: "151"
+操作系统补丁级别: "2024-08"
+          - 子级别: "167"
+操作系统补丁级别: "2024-11"
+          - 子级别: "170"
+操作系统补丁级别: "2025-01"
+          - 子级别: " X "
+操作系统补丁级别: " lts "
+使用: 。/.github/workflows/gki-kernel . yml
+秘密: 继承
+随着:
+android _版本: 《安卓13》
+内核版本: "5.15"
+子级别: ${{matrix.sub_level}}
+操作系统补丁级别: ${{matrix.os _补丁_级别}}
+跑步者: ${{输入.转轮}}
+lto_type: ${{inputs.lto_type}}
+kernelsu_variant: ${{inputs.kernelsu_variant}}
+kernelsu_branch: ${{inputs.kernelsu_branch}}
+kernelsu _ branch _其他: ${{输入. kernelsu_branch_other}}
